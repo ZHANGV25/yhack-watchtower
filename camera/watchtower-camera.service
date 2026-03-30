@@ -1,0 +1,21 @@
+[Unit]
+Description=WatchTower Camera Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/watchtower-camera
+Environment=AWS_ACCESS_KEY_ID=<your-key>
+Environment=AWS_SECRET_ACCESS_KEY=<your-secret>
+Environment=AWS_DEFAULT_REGION=us-east-1
+Environment=TURN_URL=turn:your-turn-host:3478
+Environment=TURN_USER=watchtower
+Environment=TURN_PASS=your-turn-password
+ExecStart=/usr/bin/python3 camera_client.py --camera-id <your-camera-id> --name "<Room Name>" --server <your-api-host> --relay ws://localhost:8081
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

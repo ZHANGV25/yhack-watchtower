@@ -1,0 +1,5 @@
+opencv-python==4.11.0.86
+websockets==15.0.1
+httpx==0.28.1
+boto3>=1.35.0
+aiohttp>=3.9.0
